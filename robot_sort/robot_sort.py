@@ -1,13 +1,16 @@
+# under construction
+
+
 class SortingRobot:
     def __init__(self, l):
         """
         SortingRobot takes a list and sorts it.
         """
-        self._list = l          # The list the robot is tasked with sorting
-        self._item = None       # The item the robot is holding
-        self._position = 0      # The list position the robot is at
-        self._light = "OFF"     # The state of the robot's light
-        self._time = 0          # A time counter (stretch)
+        self._list = l  # The list the robot is tasked with sorting
+        self._item = None  # The item the robot is holding
+        self._position = 0  # The list position the robot is at
+        self._light = "OFF"  # The state of the robot's light
+        self._time = 0  # A time counter (stretch)
 
     def can_move_right(self):
         """
@@ -81,11 +84,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -96,15 +101,167 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # outer loop:
+        # Keep sorting as long as changes are being made
+        # check if changes were made by sort-pass
+        # changed_by_sort_counter = True
+        # while changed_by_sort_counter == True:
+
+        # move long list (move robotmaually?)
+
+        for i in range(len(self._list)):
+
+            # if not at start, move to start
+            # while self._position >= 0:
+            while self.can_move_right() == True:
+                self.move_right()
+
+            print("step 1")
+            print("position1 :", self._position)
+            # tracking location in list index (sequence)
+            # track where you are as you iterate through the list
+
+            list_index_counter = 0
+
+            # list_index_counter = self._time
+
+            # inner while: comparing ~each number to the next
+            # doing one pass through the list
+            # (adjust for counting from zero in index vs. length)
+            while list_index_counter < (len(self._list) - 1):
+                print("while")
+
+                print("comparre", self.compare_item())
+                if self.compare_item() == 1:
+                    self.swap_item()
+
+                # # # store the two values to compare
+                # # compare_value_1 = arr[list_index_counter]
+                # # compare_value_2 = arr[list_index_counter + 1]
+
+                # # resetting changed-by-sort counter to default
+                # # changed_by_sort_counter = False
+
+                # # if the first number is
+                # # bigger than the second, then...
+                # if compare_value_1 > compare_value_2:
+                #     # ...swap the numbers
+                #     arr[list_index_counter] = compare_value_2
+                #     arr[list_index_counter + 1] = compare_value_1
+                #     # update change counter
+                #     # changed_by_sort_counter = True
+                list_index_counter += 1
+                self.move_left()
+
+            return self._list
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [
+        15,
+        41,
+        58,
+        49,
+        26,
+        4,
+        28,
+        8,
+        61,
+        60,
+        65,
+        21,
+        78,
+        14,
+        35,
+        90,
+        54,
+        5,
+        0,
+        87,
+        82,
+        96,
+        43,
+        92,
+        62,
+        97,
+        69,
+        94,
+        99,
+        93,
+        76,
+        47,
+        2,
+        88,
+        51,
+        40,
+        95,
+        6,
+        23,
+        81,
+        30,
+        19,
+        25,
+        91,
+        18,
+        68,
+        71,
+        9,
+        66,
+        1,
+        45,
+        33,
+        3,
+        72,
+        16,
+        85,
+        27,
+        59,
+        64,
+        39,
+        32,
+        24,
+        38,
+        84,
+        44,
+        80,
+        11,
+        73,
+        42,
+        20,
+        10,
+        29,
+        22,
+        98,
+        17,
+        48,
+        52,
+        67,
+        53,
+        74,
+        77,
+        37,
+        63,
+        31,
+        7,
+        75,
+        36,
+        89,
+        70,
+        34,
+        79,
+        83,
+        13,
+        57,
+        86,
+        12,
+        56,
+        50,
+        55,
+        46,
+    ]
 
     robot = SortingRobot(l)
 

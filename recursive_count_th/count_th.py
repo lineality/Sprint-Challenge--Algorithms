@@ -22,11 +22,6 @@ def count_th(word, word_test=1):
     # create variable to count matches
     number_of_matches = 0
 
-    # word = "e" + word
-
-    # testing inspection
-    # print("main  word  is ", word)
-
     if len(word) == 0:
         return 0
 
@@ -47,12 +42,6 @@ def check_again(word, number_of_matches):
 
     # this is the string being looked for
     string = "th"
-
-    # testing inspection
-    # print("helper word is ", word)
-
-    # adjustint for case-insensitive search
-    # word = word.lower()
 
     if len(word) > 1:
         # checking to see if both letters are found in the input

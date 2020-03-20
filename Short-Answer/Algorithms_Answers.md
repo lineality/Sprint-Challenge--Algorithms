@@ -7,10 +7,10 @@ a)  a = 0
       a = a + n * n
 '''
 a = 0                                       O(1) simple attribution
-    while (a < n * n * n):                  O(1) checking single value
-      a = a + n * n                         O(1) simple attribution
+    while (a < n * n * n):                  O(n^3)
+      a = a + n * n                         O(1/N^2)
                                             Total: dominant feature is...
-                                            O(1)
+                                            O(n)
 
 
 '''
@@ -24,31 +24,31 @@ b)  sum = 0
 b)  sum = 0                                 O(1) simple attribution
     for i in range(n):                      0(n) iterates through all of n one time (for)
       j = 1                                     O(1) simple attribution
-      while j < n:                              O(1) checking single value (while)
+      while j < n:                              O(log n) checking single value (while)
         j *= 2                                  O(1) simple attribution
         sum += 1                                O(1) simple attribution
                                             Total: this contains a nested for-while, but the while is O(1)
-                                            O(n)
+                                            O(n log n)
 '''
 c)  def bunnyEars(bunnies):
       if bunnies == 0:
         return 0
 
       return 2 + bunnyEars(bunnies-1)
+
+
 '''
 c)  def bunnyEars(bunnies):                 O(1) simple attribution
       if bunnies == 0:                      O(1) simple check
         return 0                            O(1) simple print
 
-      return 2 + bunnyEars(bunnies-1)       guess: O(n^2) because while bunnies-1 is less than bunnies, it's not bunnies//2 (log)
-                                            the final output is just input * 2, but beyond 1000 input the memory breaks
-                                            seems to be between nlogn and n^2...
-                                            but for very large numbers that may be too slow a decrease to associate with log
+      return 2 + bunnyEars(bunnies-1)       guess: O(n)
+                                            function run N times (outputting +2 each time)
 
-                                            (n-1^2 ?)
+                                            (n)
 
                                             total:
-                                            O(n^2)
+                                            0(n)
 
 
 '''
@@ -70,18 +70,21 @@ similar to binary search
 but you are looking for a threshold between two states
 rather than a single value match.
 
-# 0 check for solution:
+# 0 check for final solution if your range of floors is zero
 check: if egg breaks && floor_range is zero
-then solution is current value
-
+then solution is current_floor
+vs.
 if egg no_breaks && floor_range is zero
 then solution is current_floor+1
+
+when the range is note zero:
 
 # 1. half the list (building stories):
 start in the middle of the list
 location_observed = "middle floor" (of given range)
 
 # 2. check the state: break or not_break
+check: if egg breaks
 
 # 3. if search_target is higher (if the egg doesn't break)
 shift the search frame: so that your current search becomes the

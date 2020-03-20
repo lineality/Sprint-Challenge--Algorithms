@@ -1,4 +1,4 @@
-# under construction
+# GGA Robo
 
 
 class SortingRobot:
@@ -7,7 +7,7 @@ class SortingRobot:
         SortingRobot takes a list and sorts it.
         """
         self._list = l  # The list the robot is tasked with sorting
-        self._item = None  # The item the robot is holding
+        self._item = None  # The item held by the robot is holding
         self._position = 0  # The list position the robot is at
         self._light = "OFF"  # The state of the robot's light
         self._time = 0  # A time counter (stretch)
@@ -97,6 +97,11 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+    # Newtastic Function
+    def pickup(self):
+        self._item = self._list[self._position]
+        self._list[self._position] = None
+
     def sort(self):
         """
         Sort the robot's list.
@@ -107,53 +112,47 @@ class SortingRobot:
         # changed_by_sort_counter = True
         # while changed_by_sort_counter == True:
 
-        # move long list (move robotmaually?)
+        for i in range(0, len(self._list)):
 
-        for i in range(len(self._list)):
+            # print("for loop test", i)
 
-            # if not at start, move to start
-            # while self._position >= 0:
-            while self.can_move_right() == True:
-                self.move_right()
+            # step 1: if not at start, move to start
+            while self.can_move_left() is True:
+                self.move_left()
 
-            print("step 1")
-            print("position1 :", self._position)
             # tracking location in list index (sequence)
             # track where you are as you iterate through the list
-
             list_index_counter = 0
-
-            # list_index_counter = self._time
 
             # inner while: comparing ~each number to the next
             # doing one pass through the list
             # (adjust for counting from zero in index vs. length)
-            while list_index_counter < (len(self._list) - 1):
-                print("while")
+            while self.can_move_right() is True:
+                # while list_index_counter < (len(self._list) - 1):
 
-                print("comparre", self.compare_item())
+                # Step 2: pick up the first item
+                self.pickup()
+                # Step to the right (if you can)
+                self.move_right()
+
+                # compare the two
+                # if the item is bigger
                 if self.compare_item() == 1:
                     self.swap_item()
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
 
-                # # # store the two values to compare
-                # # compare_value_1 = arr[list_index_counter]
-                # # compare_value_2 = arr[list_index_counter + 1]
+                # if the item you hold is NOT bigger
+                # go back and return the item
+                else:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
 
-                # # resetting changed-by-sort counter to default
-                # # changed_by_sort_counter = False
-
-                # # if the first number is
-                # # bigger than the second, then...
-                # if compare_value_1 > compare_value_2:
-                #     # ...swap the numbers
-                #     arr[list_index_counter] = compare_value_2
-                #     arr[list_index_counter + 1] = compare_value_1
-                #     # update change counter
-                #     # changed_by_sort_counter = True
                 list_index_counter += 1
-                self.move_left()
 
-            return self._list
+        return self._list
 
 
 if __name__ == "__main__":

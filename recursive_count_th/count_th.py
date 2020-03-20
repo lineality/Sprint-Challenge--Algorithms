@@ -17,7 +17,7 @@ Your function must utilize recursion. It cannot contain any loops.
 # - call the same function again on the remainder of the word
 
 
-def count_th(word):
+def count_th(word, word_test=1):
 
     # create variable to count matches
     number_of_matches = 0
@@ -28,7 +28,7 @@ def count_th(word):
     # print("main  word  is ", word)
 
     if len(word) == 0:
-        pass
+        return 0
 
     # 1. check if number of remaining letters is zero (the base case)
     # a.k.a. check for base case: if so, return number_of_matches
@@ -37,10 +37,10 @@ def count_th(word):
 
     # 2. otherwise, keep looking
     else:
-        # counter += 1
-        # print("counter", counter)
-        word = word[1:]
-        return check_again(word, count_th(word))
+
+        if word_test != 1:
+            word = word[1:]
+        return check_again(word, count_th(word, 0))
 
 
 def check_again(word, number_of_matches):
@@ -54,12 +54,15 @@ def check_again(word, number_of_matches):
     # adjustint for case-insensitive search
     # word = word.lower()
 
-    # checking to see if both letters are found in the input
-    if word[0] == string[0] and word[1] == string[1]:
-        number_of_matches += 1
+    if len(word) > 1:
+        # checking to see if both letters are found in the input
+        if word[0] == string[0] and word[1] == string[1]:
+            number_of_matches += 1
 
     # returns only the number of matches
     return number_of_matches
 
 
-# count_th("abcthefthghith")
+# count_th("")
+# count_th("thabcthefthghith")
+# count_th("thhtthht")

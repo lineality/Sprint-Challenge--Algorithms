@@ -21,33 +21,45 @@ def count_th(word):
 
     # create variable to count matches
     number_of_matches = 0
-    # count = 0
+
+    # word = "e" + word
+
+    # testing inspection
+    # print("main  word  is ", word)
+
+    if len(word) == 0:
+        pass
 
     # 1. check if number of remaining letters is zero (the base case)
     # a.k.a. check for base case: if so, return number_of_matches
-    if len(word) == 1:
+    elif len(word) == 1:
         return number_of_matches
 
     # 2. otherwise, keep looking
     else:
+        # counter += 1
+        # print("counter", counter)
         word = word[1:]
         return check_again(word, count_th(word))
 
 
 def check_again(word, number_of_matches):
 
+    # this is the string being looked for
     string = "th"
 
-    print("word is", word)
+    # testing inspection
+    # print("helper word is ", word)
 
-    word = word.lower()
+    # adjustint for case-insensitive search
+    # word = word.lower()
 
+    # checking to see if both letters are found in the input
     if word[0] == string[0] and word[1] == string[1]:
         number_of_matches += 1
 
-    # count += 1
-
+    # returns only the number of matches
     return number_of_matches
 
 
-count_th("eTHisth")
+# count_th("abcthefthghith")

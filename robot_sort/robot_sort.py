@@ -120,10 +120,6 @@ class SortingRobot:
             while self.can_move_left() is True:
                 self.move_left()
 
-            # tracking location in list index (sequence)
-            # track where you are as you iterate through the list
-            list_index_counter = 0
-
             # inner while: comparing ~each number to the next
             # doing one pass through the list
             # (adjust for counting from zero in index vs. length)
@@ -149,8 +145,6 @@ class SortingRobot:
                     self.move_left()
                     self.swap_item()
                     self.move_right()
-
-                list_index_counter += 1
 
         return self._list
 
